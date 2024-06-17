@@ -1,0 +1,340 @@
+<div class="container shadow">
+  <h4 class="text-primary">User Info</h4>
+
+  <small class="text-secondary">
+    Fill all required fields<span class="text-danger">*</span>
+  </small>
+
+  <form #form="ngForm" (ngSubmit)="form.valid && submit(form)">
+    <div class="row mt-2">
+      <!-- First Name -->
+      <div class="form-group col-lg-6 col-md-12 col-sm-12 mt-3">
+        <label for="firstName" class="form-label"
+          >First Name <span class="text-danger">*</span></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          name="firstName"
+          id="firstName"
+          [(ngModel)]="user.firstName"
+          #firstName="ngModel"
+          required
+          maxlength="20"
+          pattern="^[ا-يA-Za-z\\s ]+$"
+          [class.is-invalid]="
+            (firstName.touched || form.submitted) && firstName.invalid
+          "
+        />
+        <div class="invalid-feedback">
+          <small *ngIf="firstName.errors?.['required']"
+            >First name is required</small
+          >
+          <small *ngIf="firstName.errors?.['maxlength']"
+            >First name should not exceed 20 chars</small
+          >
+          <small *ngIf="firstName.errors?.['pattern']"
+            >First name allows only arabic and english chars</small
+          >
+        </div>
+      </div>
+
+      <!-- Middle Name -->
+      <div class="form-group col-lg-6 col-md-12 col-sm-12 mt-3">
+        <label for="middleName" class="form-label">Middle Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="middleName"
+          id="middleName"
+          [(ngModel)]="user.middleName"
+          #middleName="ngModel"
+          maxlength="40"
+          pattern="^[ا-يA-Za-z\\s ]+$"
+          [class.is-invalid]="
+            (middleName.touched || form.submitted) && middleName.invalid
+          "
+        />
+        <div class="invalid-feedback">
+          <small *ngIf="middleName.errors?.['maxlength']"
+            >Middle name should not exceed 40 chars</small
+          >
+          <small *ngIf="middleName.errors?.['pattern']"
+            >Middle name allows only arabic and english chars</small
+          >
+        </div>
+      </div>
+
+      <!-- Last Name -->
+      <div class="form-group col-lg-6 col-md-12 col-sm-12 mt-3">
+        <label for="lastName" class="form-label"
+          >Last Name <span class="text-danger">*</span></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          name="lastName"
+          id="lastName"
+          [(ngModel)]="user.lastName"
+          #lastName="ngModel"
+          required
+          maxlength="20"
+          pattern="^[ا-يA-Za-z\\s ]+$"
+          [class.is-invalid]="
+            (lastName.touched || form.submitted) && lastName.invalid
+          "
+        />
+        <div class="invalid-feedback">
+          <small *ngIf="lastName.errors?.['required']"
+            >Last name is required</small
+          >
+          <small *ngIf="lastName.errors?.['maxlength']"
+            >Last name should not exceed 20 chars</small
+          >
+          <small *ngIf="lastName.errors?.['pattern']"
+            >Last name allows only arabic and english chars</small
+          >
+        </div>
+      </div>
+
+      <!-- Birth Date -->
+      <div class="form-group col-lg-6 col-md-12 col-sm-12 mt-3">
+        <label for="birthDate" class="form-label"
+          >Birth Date <span class="text-danger">*</span></label
+        >
+        <input
+          type="date"
+          class="form-control"
+          name="birthDate"
+          id="birthDate"
+          [(ngModel)]="user.birthDate"
+          #birthDate="ngModel"
+          required
+          [appDate]="20"
+          [class.is-invalid]="
+            (birthDate.touched || form.submitted) && birthDate.invalid
+          "
+        />
+        <div class="invalid-feedback">
+          <small *ngIf="birthDate.errors?.['required']"
+            >Birthdate is required</small
+          >
+          <small *ngIf="birthDate.errors?.['age']"
+            >Minimum age is 20 years</small
+          >
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group col-lg-6 col-md-12 col-sm-12 mt-3">
+        <label for="email" class="form-label"
+          >Email <span class="text-danger">*</span></label
+        >
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          id="email"
+          [(ngModel)]="user.email"
+          #email="ngModel"
+          required
+          pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
+          placeholder="mina@example.com"
+          [class.is-invalid]="
+            (email.touched || form.submitted) && email.invalid
+          "
+        />
+        <div class="invalid-feedback">
+          <small *ngIf="email.errors?.['required']">Email is required</small>
+          <small *ngIf="email.errors?.['pattern']">Invalid Email</small>
+        </div>
+      </div>
+
+      <!-- Mobile -->
+      <div class="form-group col-lg-6 col-md-12 col-sm-12 mt-3">
+        <label for="mobileNumber" class="form-label"
+          >Mobile Number <span class="text-danger">*</span></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          name="mobileNumber"
+          id="mobileNumber"
+          [(ngModel)]="user.mobileNumber"
+          #mobileNumber="ngModel"
+          required
+          pattern="^\+201[0125][0-9]{8}$"
+          placeholder="+2xxxxxxxxxxx"
+          [class.is-invalid]="
+            (mobileNumber.touched || form.submitted) && mobileNumber.invalid
+          "
+        />
+        <div class="invalid-feedback">
+          <small *ngIf="mobileNumber.errors?.['required']"
+            >Mobile Number is required</small
+          >
+          <small *ngIf="mobileNumber.errors?.['pattern']"
+            >Invalid Mobile Number</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <hr />
+    <div class="address-title">
+      <h4 class="text-primary">Addresses</h4>
+      <div class="text-success add-icon" (click)="addAddress()">
+        <i class="bi bi-plus-circle"> </i>
+        <small>Add</small>
+      </div>
+    </div>
+    <div class="row">
+      @for (address of user.addresses; track $index) {
+      <div class="address-title mt-4">
+        <h6 class="text-secondary">Address-{{ $index + 1 }}</h6>
+        <i
+          class="bi bi-trash text-danger delete-icon"
+          (click)="deleteAddress($index)"
+        ></i>
+      </div>
+
+      <!-- Governorate -->
+      <div class="form-group col-lg-6 col-md-12 col-sm-12 mt-3">
+        <label for="governorate-{{ $index }}" class="form-label"
+          >Governorate <span class="text-danger">*</span></label
+        >
+        <select
+          class="form-select"
+          [(ngModel)]="address.governorateId"
+          name="governorate-{{ $index }}"
+          #governorate="ngModel"
+          id="governorate-{{ $index }}"
+          [class.is-invalid]="
+            (governorate.touched || form.submitted) && governorate.invalid
+          "
+          (change)="loadCities($event)"
+          required
+        >
+          <option [value]="undefined" selected disabled>
+            Choose Governorate
+          </option>
+          @for(governorate of governorates; track $index){
+          <option [value]="governorate.id">{{ governorate.name }}</option>
+          }
+        </select>
+
+        <div class="invalid-feedback">
+          <small *ngIf="governorate.errors?.['required']"
+            >Governorate is required</small
+          >
+        </div>
+      </div>
+
+      <!-- Cities -->
+      <div class="form-group col-lg-6 col-md-12 col-sm-12 mt-3">
+        <label for="city-{{ $index }}" class="form-label"
+          >City <span class="text-danger">*</span></label
+        >
+        <select
+          class="form-select"
+          [(ngModel)]="address.cityId"
+          #city="ngModel"
+          name="city-{{ $index }}"
+          id="city-{{ $index }}"
+          [class.is-invalid]="(city.touched || form.submitted) && city.invalid"
+          [disabled]="cities.length <= 0"
+          required
+        >
+          <option [value]="undefined" selected disabled>Choose City</option>
+          @for(city of cities; track $index){
+          <option [value]="city.id">{{ city.name }}</option>
+          }
+        </select>
+
+        <div class="invalid-feedback">
+          <small *ngIf="city.errors?.['required']">City is required</small>
+        </div>
+      </div>
+
+      <!-- Street  -->
+      <div class="form-group col-lg-6 col-md-12 col-sm-12 mt-3">
+        <label for="street" class="form-label"
+          >Street <span class="text-danger">*</span></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          name="street"
+          id="street"
+          [(ngModel)]="address.street"
+          #street="ngModel"
+          required
+          maxlength="200"
+          [class.is-invalid]="
+            (street.touched || form.submitted) && street.invalid
+          "
+        />
+        <div class="invalid-feedback">
+          <small *ngIf="street.errors?.['required']">Street is required</small>
+          <small *ngIf="street.errors?.['maxlength']"
+            >Street should not exceed 200 chars</small
+          >
+        </div>
+      </div>
+
+      <!-- Building Number  -->
+      <div class="form-group col-lg-6 col-md-12 col-sm-12 mt-3">
+        <label for="buildingNumber" class="form-label"
+          >Building Number <span class="text-danger">*</span></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          name="buildingNumber"
+          id="buildingNumber"
+          [(ngModel)]="address.buildingNumber"
+          #buildingNumber="ngModel"
+          required
+          [class.is-invalid]="
+            (buildingNumber.touched || form.submitted) && buildingNumber.invalid
+          "
+        />
+        <div class="invalid-feedback">
+          <small *ngIf="buildingNumber.errors?.['required']"
+            >Building Number is required</small
+          >
+        </div>
+      </div>
+
+      <!-- Flat Number  -->
+      <div class="form-group col-lg-6 col-md-12 col-sm-12 mt-3">
+        <label for="flatNumber" class="form-label"
+          >Flat Number <span class="text-danger">*</span></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          name="flatNumber"
+          id="flatNumber"
+          [(ngModel)]="address.flatNumber"
+          #flatNumber="ngModel"
+          required
+          [class.is-invalid]="
+            (flatNumber.touched || form.submitted) && flatNumber.invalid
+          "
+        />
+        <div class="invalid-feedback">
+          <small *ngIf="flatNumber.errors?.['required']"
+            >Flat Number is required</small
+          >
+        </div>
+      </div>
+
+      <hr class="mt-4" *ngIf="user.addresses.length - 1 > $index" />
+      }
+    </div>
+    <div class="d-flex align-items-end justify-content-end mt-4">
+      <button class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>

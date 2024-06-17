@@ -1,0 +1,30 @@
+.toast {
+  margin: 10px 0px;
+  padding: 0px;
+  z-index: 99999;
+}
+.toast-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  max-height: 100vh;
+  overflow: auto;
+  padding: 10px;
+  z-index: 100000;
+}
+
+.text {
+  font-weight: 400;
+  font-size: 14px;
+  color: white;
+}
+
+.success {
+  background-color: #198754;
+  border: 0px !important;
+}
+
+.error {
+  background-color: #dc3545;
+  border: 0px !important;
+}

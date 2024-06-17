@@ -1,0 +1,22 @@
+<div class="toast-container">
+  <ngb-toast
+    *ngFor="let toast of toastService.toasts; let i = index"
+    [ngClass]="{
+      'success':toast.ToastType == types.Success,
+      'error':toast.ToastType == types.Error,
+    }"
+    class="toast"
+    [autohide]="true"
+    [delay]="toast.delay || 5000"
+    (hidden)="toastService.toasts.splice(i, 1)"
+    (click)="remove(toast)"
+  >
+    <i
+      class="bi bi-check-lg text pe-2"
+      *ngIf="toast.ToastType == types.Success"
+    ></i>
+    <i class="bi bi-x-lg text pe-2" *ngIf="toast.ToastType == types.Error"></i>
+
+    <small class="text">{{ toast.template }}</small>
+  </ngb-toast>
+</div>
