@@ -258,14 +258,14 @@
 
       <!-- Street  -->
       <div class="form-group col-lg-6 col-md-12 col-sm-12 mt-3">
-        <label for="street" class="form-label"
+        <label for="street{{ $index }}" class="form-label"
           >Street <span class="text-danger">*</span></label
         >
         <input
           type="text"
           class="form-control"
-          name="street"
-          id="street"
+          name="street{{ $index }}"
+          id="street{{ $index }}"
           [(ngModel)]="address.street"
           #street="ngModel"
           required
@@ -284,14 +284,14 @@
 
       <!-- Building Number  -->
       <div class="form-group col-lg-6 col-md-12 col-sm-12 mt-3">
-        <label for="buildingNumber" class="form-label"
+        <label for="buildingNumber{{ $index }}" class="form-label"
           >Building Number <span class="text-danger">*</span></label
         >
         <input
           type="text"
           class="form-control"
-          name="buildingNumber"
-          id="buildingNumber"
+          name="buildingNumber{{ $index }}"
+          id="buildingNumber{{ $index }}"
           [(ngModel)]="address.buildingNumber"
           #buildingNumber="ngModel"
           required
@@ -308,14 +308,14 @@
 
       <!-- Flat Number  -->
       <div class="form-group col-lg-6 col-md-12 col-sm-12 mt-3">
-        <label for="flatNumber" class="form-label"
+        <label for="flatNumber{{ $index }}" class="form-label"
           >Flat Number <span class="text-danger">*</span></label
         >
         <input
           type="text"
           class="form-control"
-          name="flatNumber"
-          id="flatNumber"
+          name="flatNumber{{ $index }}"
+          id="flatNumber{{ $index }}"
           [(ngModel)]="address.flatNumber"
           #flatNumber="ngModel"
           required
